@@ -106,7 +106,7 @@ VALUES
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: "postgresql://hermshy@localhost:5432/inventoryapp",
+    connectionString: "postgresql://dev_user@localhost:5432/inventoryapp",
   });
   await client.connect();
   await client.query(SQL);
