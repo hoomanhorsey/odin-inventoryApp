@@ -1,0 +1,14 @@
+const pool = require("./pool");
+
+async function testDb() {
+  try {
+    const res = await pool.query("SELECT * FROM books;");
+    console.log("DB connected:", res.rows);
+  } catch (err) {
+    console.error("DB connection failed:", err.message);
+  } finally {
+    await pool.end();
+  }
+}
+
+testDb();

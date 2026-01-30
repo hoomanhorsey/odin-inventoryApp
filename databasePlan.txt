@@ -1,0 +1,56 @@
+
+
+Libray Database
+
+Book 
+- Title,
+- Pages
+- Date Published
+- Foreign Key to Publisher
+
+
+Author
+- First Name,
+- Last Name
+- Date of Birth
+- Nationality
+
+Publisher
+- Name
+- Country
+
+Genres
+- Name of Genre 
+
+Borrower
+- First Name
+- Last Name
+- Address
+- Member Number
+- Member since
+
+Join Tables
+Book Genre Join Table
+- Foreign key to Book ID
+- Foreign key to Genre ID
+
+Author Book Join Table
+- Foreign key to Author ID
+- Foreign key to Book ID
+
+
+Loans Join Table
+- Foreign Key to Book
+- Foreign Key to Borrower
+- Date of Loan
+- Return Date
+- Returned Date
+- Renewals
+
+
+
+routes/views
+
+
+'/', homepage
+'/', books
