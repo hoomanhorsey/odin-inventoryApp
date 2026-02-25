@@ -1,10 +1,20 @@
 // routes/indexRouter.js
 const { Router } = require("express");
 
-const { itemControllerBasic } = require("../controllers/itemController");
+const {
+  itemDisplayGet,
+  itemUpdateGet,
+  itemUpdatePost,
+  itemDeletePost,
+} = require("../controllers/itemController");
 
 const router = Router();
-router.get("/", itemControllerBasic);
+
+// Show update form
+router.get("/:bookId/update", itemUpdateGet);
+router.post("/:boodId/update", itemUpdatePost);
+router.post("/:bookId/delete", itemDeletePost);
+router.get("/:bookId", itemDisplayGet);
 
 // authorRouter.get("/", (req, res) => res.send("All authors"));
 // authorRouter.get("/:authorId", (req, res) => {

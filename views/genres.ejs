@@ -6,10 +6,10 @@
     <title>Home Page</title>
   </head>
   <body>
-    "Hello this is the complete library  template" 
+    "Hello this is the books by genre" 
 
     <ul>
-      <% records.map((record) => { %>
+      <% booksByGenre.map((record) => { %>
         <li>
            Title:
           "<a href="/item/<%= record.book_id %>">
@@ -17,12 +17,11 @@
          </a>" ||
 
            
+          Pages: <%= record.pages %> ||
 
-          Author(s): <%= record.authors.join(', ')  %> ||
-    
-          Year: <%= record.year_published %> 
-    
-          </li>
+   
+
+                  </li>
       <% }) %>
   </ul>
   </body>

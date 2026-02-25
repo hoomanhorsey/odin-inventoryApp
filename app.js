@@ -8,13 +8,15 @@ app.set("view engine", "ejs");
 
 // Routers required
 const indexRouter = require("./routes/indexRouter");
-const categoriesRouter = require("./routes/categoriesRouter");
 const itemRouter = require("./routes/itemRouter");
+const genreRouter = require("./routes/genreRouter.js");
+// const updateRouter = require("./routes/updateRouter");
 
 // Register middleware/routers
 app.use("/", indexRouter);
-app.use("/categories", categoriesRouter);
 app.use("/item", itemRouter);
+app.use("/genre", genreRouter);
+// app.use("/update", updateRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {

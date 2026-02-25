@@ -3,9 +3,12 @@
 // const db = require("../db");
 const { getIndex } = require("../db/queries");
 
+const { mapperIndex } = require("../services/mapperIndex");
+
 async function indexHomePage(req, res) {
-  const books = await getIndex();
-  res.render("index", { books });
+  const records = await getIndex();
+  mapperIndex(records);
+  res.render("index", { records });
 }
 
 async function getAuthorById(req, res) {

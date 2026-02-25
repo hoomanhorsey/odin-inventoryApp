@@ -1,11 +1,10 @@
 // routes/indexRouter.js
 const { Router } = require("express");
-const {
-  categoriesControllerBasic,
-} = require("../controllers/categoriesController");
+
+const { genreController } = require("../controllers/genreController");
 
 const router = Router();
-router.get("/", categoriesControllerBasic);
+router.get("/:genre", genreController);
 
 // authorRouter.get("/", (req, res) => res.send("All authors"));
 // authorRouter.get("/:authorId", (req, res) => {

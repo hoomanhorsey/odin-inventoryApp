@@ -6,6 +6,26 @@
     <title>Home Page</title>
   </head>
   <body>
-    "Hello this is the item template"
+    <h2>Title: <%= bookItem.title %></h2>
+    <p>[book_id: <%= bookId %>]</p>
+
+    <p>Author(s): <%= bookItem.authors.join(', ') %></p>
+
+    <p>Pages: <%= bookItem.pages %></p>
+
+    <p>
+      Published: <%= bookItem.year_published%> || Publisher: <%=
+      bookItem.publisher_name%> || Country: <%= bookItem.publisher_country%>
+    </p>
+  
+    Genre: <%- bookItem.genres.map(genre => `<a href="/genre/${encodeURIComponent(genre)}">${genre}</a>`).join(', ') %>
+    </p>
+
+    <p><a href="/item/<%= bookItem.book_id%>/update" class="btn">Update</a>
+
+    <a href="/delete/bookItem.book_id %> ">Delete book</a></p>
+
+<p> <a href="/">Return to index</a></p>
+  
   </body>
 </html>

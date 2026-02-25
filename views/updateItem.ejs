@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <form action="/create" method="POST">
+      <label for="fullName">Full Name:</label>
+      <input placeholder="John " type="text" name="fullName" id="fullName" />
+
+      <label for="lastName">Last Name:</label>
+      <input placeholder=" Doe" type="text" name="lastName" id="lastName" />
+
+      <h2>
+        <label for="bookTitle"> Book title</label>
+        <input
+          value="<%= bookItem.title %>"
+          type="text"
+          name="bookTitle"
+          id="bookTitle"
+        />
+      </h2>
+
+      <p>
+        <label for="author">Author</label>
+        <input
+          value="<%= bookItem.authors%>"
+          type="text"
+          name="authors"
+          id="authors"
+        />
+      </p>
+      <p>
+        <label for="publisher">Publisher</label>
+        <input
+          value="<%= bookItem.publisher_name%>"
+          type="text"
+          name="publisher"
+          id="publisher"
+        />
+      </p>
+
+      <p>
+        <label for="genre">Genres</label>
+        <input
+          value="<%= bookItem.genres %>"
+          type="text"
+          name="genres"
+          id="genres"
+        />
+      </p>
+
+<p>
+
+ 
+    Genre: <%- bookItem.genres.map(genre => `<a href="/genre/${encodeURIComponent(genre)}">${genre}</a>`).join(', ') %>
+    
+
+</p>
+
+
+<p>
+<% bookItem.genres.forEach((genre, index) => { %>
+  <p>
+    <label for="genre-<%= index %>">Genre <%= index + 1 %></label>
+    <input
+      type="text"
+      id="genre-<%= index %>"
+      name="genres[]"
+      value="<%= genre %>"
+    />
+  </p>
+<% }) %>
+
+</p>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <p>[book_id: <%= bookId %>]</p>
+
+    <p>Author(s): <%= bookItem.authors.join(', ') %></p>
+    <p>
+      Published: <%= bookItem.year_published%> || Publisher: <%=
+      bookItem.publisher_name%> || Country: <%= bookItem.publisher_country%>
+    </p>
+    <p>Genre: <%= bookItem.genres.join(', ')%></p>
+  </body>
+  <button>UPDATE</button>
+</html>

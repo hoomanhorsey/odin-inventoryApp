@@ -80,26 +80,62 @@ VALUES
   ('Faber & Faber', 'UK'),
   ('Simon & Schuster', 'USA'),
   ('Hardie Grant', 'AUS'),
-  ('Bodley Head', 'UK');
+  ('Bodley Head', 'UK'),  
+  ('Doring Kindersley', 'UK'),
+  ('Thames and Hudson', 'UK');
 
 INSERT INTO books (title, pages, year_published, publisher_id)
 VALUES
   ('Why I love poo', 12, 2025, 2),
-  ('I hate Andrew!', 567, 2023, 1);
+  ('I hate Andrew!', 567, 2023, 1),
+  ('Cats are the best people', 67, 2020, 3),
+  ('Single speed bikes and the people who ride them', 113, 2011, 4),
+  ('I used to be a sandwich', 190, 1975, 5),
+  ('Shoegaze forever', 256, 1990, 6),
+  ('Practical guide to clowning', 55, 2020, 2);
+  
 
 INSERT INTO authors (first_name, last_name, birth_year, nationality)
 VALUES
   ('Ernest', 'Hemingway', 1902, 'American'),
-  ('George', 'Orwell', 1890, 'English');
+  ('George', 'Orwell', 1890, 'English'),
+  ('Whiskey', 'Dama', 2015, 'Australian'),
+  ('Luna', 'Loonytoons', 2020, 'Australian'),
+  ('Gordon', 'Ramsay', 1965, 'Scottish'),
+  ('Noam', 'Chomsky', 1935, 'American'),
+  ('Sand', 'Worm', 20453, 'Arrakus');
+
 
 INSERT INTO genres (name)
 VALUES
-('Science Fiction'), ('Fantasy'), ('Horror'), ('Romance'), ('Mystery'), ('Thriller'), ('Biography'), ('Crime'), ('Historical');
-  
+('Science Fiction'), ('Fantasy'), ('Horror'), ('Romance'), ('Mystery'), ('Thriller'), ('Biography'), ('Crime'), ('Historical'), ('Science');
+
+INSERT INTO book_genre (book_id, genre_id) VALUES
+(1, 4),
+(1, 7),
+(2, 8),
+(3, 5),
+(3, 10),
+(4, 4),
+(5, 5),
+(6, 8),
+(7, 9);
+
+INSERT INTO book_author (book_id, author_id) VALUES 
+(1, 2),
+(2, 1),
+(3, 3),
+(3, 2),
+(4, 4),
+(5, 5),
+(6, 6),
+(7, 7);
+
 INSERT INTO borrowers (first_name, last_name, address, member_no, member_since) 
 VALUES
 ('Ben', 'Corbett', '1 Fonzy Lane, Kensington', 12345, 2023),
 ('Andrew', 'Ma', '666 Bennett Street, Fitzroy North', 23421, 2020);
+
 
 `;
 
