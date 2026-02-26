@@ -22,8 +22,13 @@ async function itemUpdateGet(req, res) {
 }
 
 async function itemUpdatePost(req, res) {
-  console.log("itemUpdatePost");
+  const bookId = Number(req.params.bookId);
+  console.log("itemUpdatePost " + bookId);
+
+  /// Just have to write sql query to udpate.
+  res.redirect(`/item/${bookId}`);
 }
+
 async function itemDeletePost(req, res) {
   console.log("itemDeletePost");
 }

@@ -12,7 +12,7 @@ const router = Router();
 
 // Show update form
 router.get("/:bookId/update", itemUpdateGet);
-router.post("/:boodId/update", itemUpdatePost);
+router.post("/:bookId/update", itemUpdatePost);
 router.post("/:bookId/delete", itemDeletePost);
 router.get("/:bookId", itemDisplayGet);
 

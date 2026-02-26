@@ -16,17 +16,22 @@ DROP TABLE IF EXISTS genres;
 
 CREATE TABLE publishers (
   publisher_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  name TEXT NOT NULL,
-  country TEXT NOT NULL
+  name TEXT NOT NULL UNIQUE,
+  country TEXT NOT NULL,
+  CONSTRAINT name_not_blank CHECK (TRIM(name) <> ''),
+  CONSTRAINT country_not_blank CHECK (TRIM(country) <> '')
 );
 
 
 CREATE TABLE books (
   book_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   title TEXT NOT NULL,
-  pages INTEGER NOT NULL,
-  year_published INTEGER NOT NULL,
-  publisher_id INTEGER NOT NULL REFERENCES publishers(publisher_id)
+  pages INTEGER NOT NULL CHECK (pages > 0),
+  year_published INTEGER NOT NULL CHECK (
+    year_published BETWEEN 100 AND EXTRACT(YEAR FROM CURRENT_DATE)
+  ),
+  publisher_id INTEGER NOT NULL REFERENCES publishers(publisher_id) ,
+  CONSTRAINT title_not_blank CHECK (TRIM(title) <> '')
 );
 
 CREATE TABLE authors (
@@ -40,20 +45,13 @@ CREATE TABLE authors (
 
 CREATE TABLE genres (
   genre_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  name TEXT NOT NULL
+  name TEXT NOT NULL UNIQUE
 );
 
-CREATE TABLE borrowers (
-  borrower_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY, 
-  first_name TEXT NOT NULL,
-  last_name TEXT NOT NULL, 
-  address TEXT NOT NULL, 
-  member_no INTEGER	NOT NULL,
-  member_since INTEGER NOT NULL
-);
+
 
 CREATE TABLE book_author (
-  book_id INTEGER NOT NULL REFERENCES books(book_id),
+  book_id INTEGER NOT NULL REFERENCES books(book_id) ON DELETE CASCADE,
   author_id INTEGER NOT NULL REFERENCES authors(author_id),
   PRIMARY KEY (book_id, author_id)
 );
@@ -64,16 +62,6 @@ CREATE TABLE book_genre (
   PRIMARY KEY (book_id, genre_id)
 );
 
-CREATE TABLE loans (
-  loan_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  book_id INTEGER NOT NULL REFERENCES books(book_id),
-  borrower_id INTEGER NOT NULL REFERENCES borrowers(borrower_id), 
-  loan_date DATE NOT NULL,
-  due_date DATE NOT NULL, 
-  returned_date DATE, 
-  renewals INTEGER DEFAULT 0,
-  CONSTRAINT unique_loan_per_day UNIQUE (book_id, borrower_id, loan_date)
-);
 
 INSERT INTO publishers (name, country) 
 VALUES
@@ -130,13 +118,6 @@ INSERT INTO book_author (book_id, author_id) VALUES
 (5, 5),
 (6, 6),
 (7, 7);
-
-INSERT INTO borrowers (first_name, last_name, address, member_no, member_since) 
-VALUES
-('Ben', 'Corbett', '1 Fonzy Lane, Kensington', 12345, 2023),
-('Andrew', 'Ma', '666 Bennett Street, Fitzroy North', 23421, 2020);
-
-
 `;
 
 async function main() {
@@ -151,3 +132,27 @@ async function main() {
 }
 
 main();
+
+// CREATE TABLE loans (
+//   loan_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+//   book_id INTEGER NOT NULL REFERENCES books(book_id),
+//   borrower_id INTEGER NOT NULL REFERENCES borrowers(borrower_id),
+//   loan_date DATE NOT NULL,
+//   due_date DATE NOT NULL,
+//   returned_date DATE,
+//   renewals INTEGER DEFAULT 0,
+//   CONSTRAINT unique_loan_per_day UNIQUE (book_id, borrower_id, loan_date)
+// // );
+// CREATE TABLE borrowers (
+//   borrower_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+//   first_name TEXT NOT NULL,
+//   last_name TEXT NOT NULL,
+//   address TEXT NOT NULL,
+//   member_no INTEGER	NOT NULL,
+//   member_since INTEGER NOT NULL
+// );
+
+// INSERT INTO borrowers (first_name, last_name, address, member_no, member_since)
+// VALUES
+// ('Ben', 'Corbett', '1 Fonzy Lane, Kensington', 12345, 2023),
+// ('Andrew', 'Ma', '666 Bennett Street, Fitzroy North', 23421, 2020);

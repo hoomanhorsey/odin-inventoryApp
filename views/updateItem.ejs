@@ -5,13 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home Page</title>
   </head>
-  <body>
-    <form action="/create" method="POST">
-      <label for="fullName">Full Name:</label>
-      <input placeholder="John " type="text" name="fullName" id="fullName" />
 
-      <label for="lastName">Last Name:</label>
-      <input placeholder=" Doe" type="text" name="lastName" id="lastName" />
+  <body>
+    <form action="/item/<%= bookItem.book_id %>/update" method="POST">
 
       <h2>
         <label for="bookTitle"> Book title</label>
@@ -22,14 +18,28 @@
           id="bookTitle"
         />
       </h2>
-
-      <p>
-        <label for="author">Author</label>
-        <input
-          value="<%= bookItem.authors%>"
+   
+        <% bookItem.authors.forEach((author, index) => { %>
+        <p>
+        <label for="author -<%= index %>">Author <%= index + 1 %></label>
+        <input 
           type="text"
-          name="authors"
-          id="authors"
+          id="author-<%= index %>"
+          name="authors[]"
+          value="<%= author %>"
+        />
+      </p>
+      <%
+        }) %>
+
+
+       <p>
+        <label for="year_published">Year Published</label>
+        <input
+          value="<%= bookItem.year_published %>"
+          type="number"
+          name="year_published"
+          id="year_published"
         />
       </p>
       <p>
@@ -42,26 +52,15 @@
         />
       </p>
 
-      <p>
-        <label for="genre">Genres</label>
+         <p>
+        <label for="publisher_country">Publisher</label>
         <input
-          value="<%= bookItem.genres %>"
+          value="<%= bookItem.publisher_country%>"
           type="text"
-          name="genres"
-          id="genres"
+          name="publisher_country"
+          id="publisher_country"
         />
       </p>
-
-<p>
-
- 
-    Genre: <%- bookItem.genres.map(genre => `<a href="/genre/${encodeURIComponent(genre)}">${genre}</a>`).join(', ') %>
-    
-
-</p>
-
-
-<p>
 <% bookItem.genres.forEach((genre, index) => { %>
   <p>
     <label for="genre-<%= index %>">Genre <%= index + 1 %></label>
@@ -74,19 +73,10 @@
   </p>
 <% }) %>
 
-</p>
 
-      <button type="submit">Submit</button>
+
+      <button type="submit">Submit updates</button>
     </form>
 
-    <p>[book_id: <%= bookId %>]</p>
-
-    <p>Author(s): <%= bookItem.authors.join(', ') %></p>
-    <p>
-      Published: <%= bookItem.year_published%> || Publisher: <%=
-      bookItem.publisher_name%> || Country: <%= bookItem.publisher_country%>
-    </p>
-    <p>Genre: <%= bookItem.genres.join(', ')%></p>
-  </body>
-  <button>UPDATE</button>
+   
 </html>

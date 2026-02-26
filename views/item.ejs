@@ -18,6 +18,7 @@
       bookItem.publisher_name%> || Country: <%= bookItem.publisher_country%>
     </p>
   
+    <p>
     Genre: <%- bookItem.genres.map(genre => `<a href="/genre/${encodeURIComponent(genre)}">${genre}</a>`).join(', ') %>
     </p>
 
