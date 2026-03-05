@@ -7,36 +7,34 @@
   </head>
 
   <body>
-    <form action="/item/<%= bookItem.book_id %>/update" method="POST">
+    <form action="/item/new" method="POST">
 
       <h2>
         <label for="bookTitle"> Book title</label>
         <input
-          value="<%= bookItem.title %>"
+          placeholder="Insert title"
           type="text"
           name="bookTitle"
           id="bookTitle"
         />
       </h2>
    
-        <% bookItem.authors.forEach((author, index) => { %>
+   
         <p>
-        <label for="author -<%= index %>">Author <%= index + 1 %></label>
+        <label for="author"
         <input 
           type="text"
-          id="author-<%= index %>"
-          name="authors[]"
-          value="<%= author %>"
+          id="author"
+          name="authors"
+          placeholder="Insert author"
         />
-
-      
       </p>
       <%
         }) %>
 
    <label for="pages">Pages</label>
         <input
-          value="<%= bookItem.pages %>"
+          placeholder="Insert page no."
           type="numger"
           name="pages"
           id="pages"
@@ -44,7 +42,7 @@
        <p>
         <label for="year_published">Year Published</label>
         <input
-          value="<%= bookItem.year_published %>"
+          placeholder="Insert year published"
           type="number"
           name="year_published"
           id="year_published"
@@ -53,7 +51,7 @@
       <p>
         <label for="publisher">Publisher</label>
         <input
-          value="<%= bookItem.publisher_name%>"
+          value="Insert publisher name"
           type="text"
           name="publisher_name"
           id="publisher_name"
@@ -63,25 +61,23 @@
          <p>
         <label for="publisher_country">Publisher Country</label>
         <input
-          value="<%= bookItem.publisher_country%>"
+          placeholder="insert publisher name"
           type="text"
           name="publisher_country"
           id="publisher_country"
         />
       </p>
-<% bookItem.genres.forEach((genre, index) => { %>
+
   <p>
-    <label for="genre-<%= index %>">Genre <%= index + 1 %></label>
+    <label for="genre">Genre </label>
     <input
       type="text"
       id="genre-<%= index %>"
       name="genres[]"
-      value="<%= genre %>"
+      placeholder="Insert genre"
     />
   </p>
 <% }) %>
-
-
 
       <button type="submit">Submit updates</button>
     </form>

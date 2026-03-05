@@ -36,10 +36,8 @@ CREATE TABLE books (
 
 CREATE TABLE authors (
   author_id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  first_name TEXT NOT NULL,
-  last_name TEXT NOT NULL,
-  birth_year INTEGER NOT NULL, 
-  nationality TEXT NOT NULL
+  name TEXT NOT NULL UNIQUE
+
 );
 
 
@@ -83,15 +81,15 @@ VALUES
   ('Practical guide to clowning', 55, 2020, 2);
   
 
-INSERT INTO authors (first_name, last_name, birth_year, nationality)
+INSERT INTO authors (name)
 VALUES
-  ('Ernest', 'Hemingway', 1902, 'American'),
-  ('George', 'Orwell', 1890, 'English'),
-  ('Whiskey', 'Dama', 2015, 'Australian'),
-  ('Luna', 'Loonytoons', 2020, 'Australian'),
-  ('Gordon', 'Ramsay', 1965, 'Scottish'),
-  ('Noam', 'Chomsky', 1935, 'American'),
-  ('Sand', 'Worm', 20453, 'Arrakus');
+  ('Hemingway, Ernest'),
+  ('Orwell, George'),
+  ('Dama, Whiskey'),
+  ('Loonytoons, Luna'),
+  ('Ramsay, Gordon'),
+  ('Chomsky, Noam'),
+  ('Worm, Sand');
 
 
 INSERT INTO genres (name)

@@ -22,9 +22,14 @@
     Genre: <%- bookItem.genres.map(genre => `<a href="/genre/${encodeURIComponent(genre)}">${genre}</a>`).join(', ') %>
     </p>
 
-    <p><a href="/item/<%= bookItem.book_id%>/update" class="btn">Update</a>
+    <p><a href="/item/<%= bookItem.book_id%>/update" class="b tn">Update</a></p>
 
-    <a href="/delete/bookItem.book_id %> ">Delete book</a></p>
+    <!-- <a href="/item/<%= bookItem.book_id%>/delete">Delete book</a></p> -->
+    
+    <form action="/item/<%= bookItem.book_id %>/delete" method="POST"
+        onsubmit="return confirm('Are you sure you want to delete this book?');"
+>  <button type="submit">Delete book</button>
+</form>
 
 <p> <a href="/">Return to index</a></p>
   

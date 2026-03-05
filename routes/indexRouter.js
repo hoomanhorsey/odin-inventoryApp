@@ -1,15 +1,11 @@
 // routes/indexRouter.js
 const { Router } = require("express");
 
-const { indexHomePage } = require("../controllers/indexController");
+const { indexHomePage, itemNew } = require("../controllers/indexController");
 
 const router = Router();
-router.get("/", indexHomePage);
+router.get("/new", itemNew);
 
-// authorRouter.get("/", (req, res) => res.send("All authors"));
-// authorRouter.get("/:authorId", (req, res) => {
-//   const { authorId } = req.params;
-//   res.send(`Author ID: ${authorId}`);
-// });
+router.get("/", indexHomePage);
 
 module.exports = router;

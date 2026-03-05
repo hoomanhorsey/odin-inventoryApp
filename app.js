@@ -1,7 +1,10 @@
 const express = require("express");
+
 const app = express();
 
 const path = require("node:path");
+
+app.use(express.urlencoded({ extended: true }));
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -10,13 +13,11 @@ app.set("view engine", "ejs");
 const indexRouter = require("./routes/indexRouter");
 const itemRouter = require("./routes/itemRouter");
 const genreRouter = require("./routes/genreRouter.js");
-// const updateRouter = require("./routes/updateRouter");
 
 // Register middleware/routers
 app.use("/", indexRouter);
 app.use("/item", itemRouter);
 app.use("/genre", genreRouter);
-// app.use("/update", updateRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, (error) => {

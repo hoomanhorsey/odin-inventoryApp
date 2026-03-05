@@ -15,15 +15,14 @@
           "<a href="/item/<%= record.book_id %>">
           <%= record.title %>
          </a>" ||
-
-           
-
           Author(s): <%= record.authors.join(', ')  %> ||
-    
           Year: <%= record.year_published %> 
     
           </li>
       <% }) %>
   </ul>
+
+      <p><a href="/new" class="btn">Add new book</a></p>
+
   </body>
 </html>

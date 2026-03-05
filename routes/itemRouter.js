@@ -10,7 +10,6 @@ const {
 
 const router = Router();
 
-// Show update form
 router.get("/:bookId/update", itemUpdateGet);
 router.post("/:bookId/update", itemUpdatePost);
 router.post("/:bookId/delete", itemDeletePost);
