@@ -11,11 +11,6 @@ async function indexHomePage(req, res) {
   res.render("index", { records });
 }
 
-async function itemNew(req, res) {
-  console.log("calling new item");
-  const newItemId = await newItem();
-}
-
 // async function getAuthorById(req, res) {
 //   const { authorId } = req.params;
 
@@ -29,4 +24,4 @@ async function itemNew(req, res) {
 //   res.send(`Author Name: ${author.name}`);
 // }
 
-module.exports = { indexHomePage, itemNew };
+module.exports = { indexHomePage };

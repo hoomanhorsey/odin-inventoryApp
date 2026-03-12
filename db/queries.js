@@ -185,7 +185,7 @@ async function deleteItem(bookId) {
   }
 }
 
-async function newItem(bookId, formData) {
+async function newItem(formData) {
   const client = await pool.connect();
 
   try {
@@ -201,9 +201,11 @@ async function newItem(bookId, formData) {
     );
     const publisherId = publisherRes.rows[0].publisher_id;
 
+    console.log("publisher id", publisherId);
+
     // 2️⃣ Update main book fields
     const bookRes = await client.query(
-      `INSERT INTO books (title, pages, year_published, publisher_id) VALUES ($1, $2, $3, $4)`,
+      `INSERT INTO books (title, pages, year_published, publisher_id) VALUES ($1, $2, $3, $4) RETURNING book_id`,
       [
         formData.bookTitle,
         formData.pages,
@@ -216,7 +218,7 @@ async function newItem(bookId, formData) {
     // 3️⃣ Upsert authors
     if (formData.authors.length > 0) {
       const authorRes = await client.query(
-        `INSERT INTO authors (name) VALUES ($1)ON CONFLICT (name) DO NOTHING`,
+        `INSERT INTO authors (name) VALUES ($1)ON CONFLICT (name) DO NOTHING RETURNING author_id`,
         [formData.authors],
       );
       const authorId = authorRes.rows[0].author_id;
@@ -231,14 +233,14 @@ async function newItem(bookId, formData) {
     if (formData.genres.length > 0) {
       const genreRes = await client.query(
         `INSERT INTO genres (name) VALUES ($1)
-         ON CONFLICT (name) DO NOTHING`,
+         ON CONFLICT (name) DO NOTHING RETURNING genre_id`,
         [formData.genres],
       );
       const genreId = genreRes.rows[0].genre_id;
 
       await client.query(
         `INSERT INTO book_genre (book_id, genre_id) VALUES ($1, $2 )`,
-        [(bookId, genreId)],
+        [bookId, genreId],
       );
     }
 

@@ -6,9 +6,13 @@ const {
   itemUpdateGet,
   itemUpdatePost,
   itemDeletePost,
+  itemDisplayNewForm,
+  itemInsertNew,
 } = require("../controllers/itemController");
 
 const router = Router();
+router.get("/new", itemDisplayNewForm);
+router.post("/new", itemInsertNew);
 
 router.get("/:bookId/update", itemUpdateGet);
 router.post("/:bookId/update", itemUpdatePost);

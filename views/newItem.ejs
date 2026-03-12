@@ -8,41 +8,41 @@
 
   <body>
     <form action="/item/new" method="POST">
-
       <h2>
         <label for="bookTitle"> Book title</label>
         <input
           placeholder="Insert title"
+          value="Delete all values later in ejs"
           type="text"
           name="bookTitle"
           id="bookTitle"
         />
       </h2>
-   
-   
-        <p>
-        <label for="author"
-        <input 
+
+      <p>
+        <label for="author">Author</label>
+        <input
+          placeholder="Insert author"
+          value="Delete all values later in ejs"
           type="text"
           id="author"
           name="authors"
-          placeholder="Insert author"
         />
       </p>
-      <%
-        }) %>
 
-   <label for="pages">Pages</label>
-        <input
-          placeholder="Insert page no."
-          type="numger"
-          name="pages"
-          id="pages"
-        />
-       <p>
+      <label for="pages">Pages</label>
+      <input
+        placeholder="Insert page no."
+        value="2"
+        type="number"
+        name="pages"
+        id="pages"
+      />
+      <p>
         <label for="year_published">Year Published</label>
         <input
           placeholder="Insert year published"
+          value="1999"
           type="number"
           name="year_published"
           id="year_published"
@@ -51,36 +51,37 @@
       <p>
         <label for="publisher">Publisher</label>
         <input
-          value="Insert publisher name"
+          placeholder="Insert publisher name"
+          value="Delete all values later in ejs"
           type="text"
           name="publisher_name"
           id="publisher_name"
         />
       </p>
 
-         <p>
+      <p>
         <label for="publisher_country">Publisher Country</label>
         <input
           placeholder="insert publisher name"
+          value="Delete all values later in ejs"
           type="text"
           name="publisher_country"
           id="publisher_country"
         />
       </p>
 
-  <p>
-    <label for="genre">Genre </label>
-    <input
-      type="text"
-      id="genre-<%= index %>"
-      name="genres[]"
-      placeholder="Insert genre"
-    />
-  </p>
-<% }) %>
+      <p>
+        <label for="genre">Genre </label>
+        <input
+          placeholder="Insert genre"
+          value="Delete all values later in ejs"
+          type="text"
+          id="genre"
+          name="genres[]"
+        />
+      </p>
 
       <button type="submit">Submit updates</button>
     </form>
-
-     </body>
+  </body>
 </html>

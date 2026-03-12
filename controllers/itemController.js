@@ -2,7 +2,7 @@
 
 // const db = require("../db");
 
-const { getItem, updateItem, deleteItem } = require("../db/queries");
+const { getItem, updateItem, deleteItem, newItem } = require("../db/queries");
 
 async function itemUpdateGet(req, res) {
   console.log("itemUpdateGet");
@@ -55,9 +55,32 @@ async function itemDisplayGet(req, res) {
   res.render("item", { bookId, bookItem });
 }
 
+function itemDisplayNewForm(req, res) {
+  console.log("presenting new item form");
+  res.render("newItem");
+}
+
+async function itemInsertNew(req, res) {
+  console.log("calling new item");
+  console.log(
+    req.body.bookTitle,
+    req.body.authors,
+    req.body.pages,
+    req.body.year_published,
+    req.body.publisher_name,
+    req.body.publisher_country,
+    req.body.genres,
+  );
+  await newItem(req.body);
+
+  res.redirect("/");
+}
+
 module.exports = {
   itemUpdateGet,
   itemUpdatePost,
   itemDeletePost,
   itemDisplayGet,
+  itemDisplayNewForm,
+  itemInsertNew,
 };
